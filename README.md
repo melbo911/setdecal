@@ -15,6 +15,33 @@ it is the default decal which gets installed when called with no parameter speci
 However, you can add the name of another decal on the command line, to apply this 
 instead.
 
+
+```
+$ ./setdecal maquify_2_green_key.dcl
+setdecal - 0.1.0
+changing to .
+setting decals to maquify_2_green_key.dcl ...
+scanning ./Custom Scenery
+doing zOrtho4XP_+51-010
+doing zOrtho4XP_+52-011
+doing zOrtho4XP_+53-011
+doing zOrtho4XP_+52-010
+doing zOrtho4XP_+51-011
+doing zOrtho4XP_+53-010
+doing zOrtho4XP_+48+011
+doing zOrtho4XP_+47+012
+doing zOrtho4XP_+47+013
+doing zOrtho4XP_+48+012
+doing zOrtho4XP_+51-008
+doing zOrtho4XP_+52-007
+doing zOrtho4XP_+52-009
+doing zOrtho4XP_+53-009
+doing zOrtho4XP_+53-007
+doing zOrtho4XP_+52-008
+doing zOrtho4XP_+51-009
+doing zOrtho4XP_+53-008
+```
+
 If called with option "-h" , it shows all valid decal names:
 
 ```
