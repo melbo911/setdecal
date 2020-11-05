@@ -156,7 +156,12 @@ int scanOrthos() {
                            fclose(out);
                         }
                         fclose(in);
-                        rename(outfile,terrain);
+#ifdef _WIN32
+                        remove(terrain);
+#endif
+                        if ( rename(outfile,terrain) ) {
+                           printf("ERR: cannot rename %s\n",outfile);
+                        }
                      } else {
                         printf("cannot open %s\n",terrain);
                      } 
