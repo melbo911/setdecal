@@ -1,16 +1,19 @@
 
 # setdecal
 
-**setdecal** is a little program which scans the X-Plane "Custom Scenery" for 
-"Ortho4XP" tiles and changes the decal definition inside the "terrain" files.
+**setdecal** is a little program (setdecal.exe for Windows, setdecal.mac for macOS) 
+which scans the X-Plane "Custom Scenery" for "Ortho4XP" tiles and changes the decal 
+definition inside the "terrain" files. Linux users can simply compile from the source
+by simply running "make setdecal" in a shell window.
 
-This allows you to change the surface structure so that they look more realistic. 
+This allows you to change the surface structure so that the ground looks more realistic. 
 
-The default decal in Ortho4XP, which gets set during the creation process of a
-new tile, is "maquify_2_green_key.dcl".
+The default decal in Ortho4XP, which gets set during the creation process of a new 
+tile, is "maquify_2_green_key.dcl". You can change that in the Ortho4XP Python source,
+but most of the Windows users might use the EXE version of Ortho4XP.
 
-My (and others) preference is the "grass_and_stony_dirt_1.dcl" decal and therefor
-it is the default decal which gets installed when called with no parameter specified.
+My personal (and others) preference is the "grass_and_stony_dirt_1.dcl" decal and therefor
+this is the default decal which gets installed when called with no parameter specified.
 
 However, you can add the name of another decal on the command line, to apply this 
 instead.
