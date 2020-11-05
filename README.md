@@ -27,7 +27,7 @@ default setdecal decal: grass_and_stony_dirt_1.dcl
 
 valid decals:
 
-AGB_grass_and_asphalt_1.dcl
+'AGB_grass_and_asphalt_1.dcl
 AGS_shrub_dirt_green_key_1.dcl
 AGS_suburban_garden_1.dcl
 AGS_suburban_garden_1_proj.dcl
@@ -102,4 +102,4 @@ very_long_grass_modulator2.dcl
 
 
 
-
+'
