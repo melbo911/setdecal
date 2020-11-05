@@ -17,6 +17,7 @@ instead.
 
 If called with option "-h" , it shows all valid decal names:
 
+```
 $ ./setdecal -h
 setdecal - 0.1.0
 
@@ -24,6 +25,8 @@ usage: setdecal [decal]
 
 default Ortho4XP decal: maquify_2_green_key.dcl
 default setdecal decal: grass_and_stony_dirt_1.dcl
+```
+
 
 valid decals:
 
