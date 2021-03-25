@@ -1,7 +1,7 @@
 
 # setdecal
 
-**setdecal** is a little program (setdecal.exe for Windows, setdecal.mac for macOS) 
+**setdecal** is a little program (setdecal.exe for Windows, setdecal.app for macOS) 
 which scans the X-Plane "Custom Scenery" for "Ortho4XP" tiles and changes the decal 
 definition inside the "terrain" files. Linux users can simply compile from the source
 by running "make setdecal" in a shell window.
@@ -22,7 +22,7 @@ instead.
 
 ```
 $ ./setdecal maquify_2_green_key.dcl
-setdecal - 0.1.0
+setdecal - 0.1.1
 changing to .
 setting decals to maquify_2_green_key.dcl ...
 scanning ./Custom Scenery
@@ -50,7 +50,7 @@ If called with option "-h" , it shows all valid decal names:
 
 ```
 $ ./setdecal -h
-setdecal - 0.1.0
+setdecal - 0.1.1
 
 usage: setdecal [decal]
 

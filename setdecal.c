@@ -4,7 +4,7 @@
 #
 */
 
-#define VERSION "0.1.0"
+#define VERSION "0.1.1"
 
 #ifdef _WIN32
  #include <windows.h>
@@ -122,18 +122,16 @@ int scanOrthos() {
    char terrain[MAX_TXT];
    char outfile[MAX_TXT];
 
-   d = opendir(XSCENERYDIR);
-   if (d) {
+   if ( (d = opendir(XSCENERYDIR)) != NULL) {
       printf("scanning %s\n",XSCENERYDIR);
       while ((dir = readdir(d)) != NULL) {
          if( strstr(dir->d_name,"zOrtho4XP_") ) {
-            printf("doing %s\n",dir->d_name);
             strcpy(ortho,XSCENERYDIR);
             strcat(ortho,"/");
             strcat(ortho,dir->d_name);
             strcat(ortho,"/terrain");
-            t = opendir(ortho);
-            if (t) {
+            if ( (t = opendir(ortho)) != NULL) {
+               printf("doing %s\n",dir->d_name);
                while ((ter = readdir(t)) != NULL) {
                   if(  strstr(ter->d_name,".ter") && \
                      ! strstr(ter->d_name,"sea_overlay") ) {
@@ -167,8 +165,8 @@ int scanOrthos() {
                      } 
                   }
                }
+               closedir(t);
             }
-            closedir(t);
          }
       }
       closedir(d);
