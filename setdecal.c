@@ -4,7 +4,7 @@
 #
 */
 
-#define VERSION "0.1.1"
+#define VERSION "0.1.3"
 
 #ifdef _WIN32
  #include <windows.h>
@@ -117,6 +117,7 @@ int scanOrthos() {
    struct dirent *dir;
    struct dirent *ter;
 
+   int  got_decal;
    char buf[MAX_TXT];
    char ortho[MAX_TXT];
    char terrain[MAX_TXT];
@@ -125,7 +126,7 @@ int scanOrthos() {
    if ( (d = opendir(XSCENERYDIR)) != NULL) {
       printf("scanning %s\n",XSCENERYDIR);
       while ((dir = readdir(d)) != NULL) {
-         if( strstr(dir->d_name,"zOrtho4XP_") ) {
+         if( strstr(dir->d_name,"zOrtho4XP_") || strstr(dir->d_name,"zPhotoXP") ) {
             strcpy(ortho,XSCENERYDIR);
             strcat(ortho,"/");
             strcat(ortho,dir->d_name);
@@ -144,12 +145,18 @@ int scanOrthos() {
                      if ( (in = fopen(terrain,"r")) ) {
                         strcpy(outfile,terrain);
                         strcat(outfile,".tmp");
+                        got_decal = 0;
                         if ( (out = fopen(outfile,"w")) ) {
                            while ( fgets(buf, MAX_TXT, in) != NULL ) {
                               if ( strstr(buf,"DECAL_LIB") ) {
-                                 sprintf(buf,"DECAL_LIB lib/g10/decals/%s\n",decal);
+                                 if ( got_decal == 0 ) {
+                                    sprintf(buf,"DECAL_LIB lib/g10/decals/%s\n",decal);
+                                    got_decal = 1;
+                                    fputs(buf,out);
+                                 }
+                              } else {
+                                 fputs(buf,out);
                               }
-                              fputs(buf,out);
                            }
                            fclose(out);
                         }
