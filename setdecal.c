@@ -4,7 +4,7 @@
 #
 */
 
-#define VERSION "0.1.3"
+#define VERSION "0.1.5"
 
 #ifdef _WIN32
  #include <windows.h>
@@ -116,9 +116,10 @@ int scanOrthos() {
    DIR *d, *t;
    struct dirent *dir;
    struct dirent *ter;
+   int fixed;
 
-   int  got_decal;
    char buf[MAX_TXT];
+   char buf2[MAX_TXT];
    char ortho[MAX_TXT];
    char terrain[MAX_TXT];
    char outfile[MAX_TXT];
@@ -126,7 +127,7 @@ int scanOrthos() {
    if ( (d = opendir(XSCENERYDIR)) != NULL) {
       printf("scanning %s\n",XSCENERYDIR);
       while ((dir = readdir(d)) != NULL) {
-         if( strstr(dir->d_name,"zOrtho4XP_") || strstr(dir->d_name,"zPhotoXP") ) {
+         if( strstr(dir->d_name,"zOrtho") ) {
             strcpy(ortho,XSCENERYDIR);
             strcat(ortho,"/");
             strcat(ortho,dir->d_name);
@@ -139,21 +140,24 @@ int scanOrthos() {
                      strcpy(terrain,ortho);
                      strcat(terrain,"/");
                      strcat(terrain,ter->d_name);
-/*
-                     printf("doing %s\n",terrain);
-*/
+
+                     /* printf("doing %s\n",terrain);   */
+
+                     fixed = 0;
                      if ( (in = fopen(terrain,"r")) ) {
                         strcpy(outfile,terrain);
                         strcat(outfile,".tmp");
-                        got_decal = 0;
                         if ( (out = fopen(outfile,"w")) ) {
                            while ( fgets(buf, MAX_TXT, in) != NULL ) {
-                              if ( strstr(buf,"DECAL_LIB") ) {
-                                 if ( got_decal == 0 ) {
-                                    sprintf(buf,"DECAL_LIB lib/g10/decals/%s\n",decal);
-                                    got_decal = 1;
-                                    fputs(buf,out);
+                              if ( strstr(buf,"BASE_TEX_NOWRAP") ) {
+                                 if ( buf[strlen(buf)-1] >= '0' ) {
+                                    sprintf(buf,"%s\n",buf); /* add LF if not exist */
                                  }
+                                 fputs(buf,out);
+                                 sprintf(buf,"DECAL_LIB lib/g10/decals/%s\n",decal);
+                                 fputs(buf,out);
+                              } else if ( strstr(buf,"DECAL_LIB") ) {
+                                 /* --- NOP --- */
                               } else {
                                  fputs(buf,out);
                               }
